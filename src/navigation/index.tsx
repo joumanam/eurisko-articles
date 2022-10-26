@@ -11,23 +11,22 @@ export const DashboardNavigation = createStackNavigator();
 
 export default function AppNavigation() {
 
-    const user = useAppSelector((store) => store?.user);
+  const user = useAppSelector((store) => store?.user);
 
-    return (
-        <NavigationContainer>
-            {user.user == null ?
-                <LoginNavigation.Navigator>
-                    <LoginNavigation.Screen name="Login"
-                        component={Login}
-                        options={{ headerShown: false }} />
-                </LoginNavigation.Navigator>
-                :
-                <DashboardNavigation.Navigator>
-                    <DashboardNavigation.Screen name="Dashboard"
-                        component={Dashboard}
-                        options={{ headerShown: false }} />
-                </DashboardNavigation.Navigator>}
-
-        </NavigationContainer>
-    )
+  return (
+    <NavigationContainer>
+      {user.user?.accessToken == null ?
+        <LoginNavigation.Navigator>
+          <LoginNavigation.Screen name="Login"
+            component={Login}
+            options={{ headerShown: false }} />
+        </LoginNavigation.Navigator>
+        :
+        <DashboardNavigation.Navigator>
+          <DashboardNavigation.Screen name="Dashboard"
+            component={Dashboard}
+            options={{ headerShown: false }} />
+        </DashboardNavigation.Navigator>}
+    </NavigationContainer>
+  )
 }
